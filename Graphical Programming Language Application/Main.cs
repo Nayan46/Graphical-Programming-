@@ -528,9 +528,10 @@ namespace Graphical_Programming_Language_Application
             Regex regex4 = new Regex(@"drawto (.*[\d])([,])(.*[\d]) triangle (.*[\d])([,])(.*[\d])([,])(.*[\d])");
             Regex regex5 = new Regex(@"drawto (.*[\d])([,])(.*[\d]) polygon point2 (.*[\d])([,])(.*[\d]) point3 (.*[\d])([,])(.*[\d]) point4 (.*[\d])([,])(.*[\d]) point5 (.*[\d])([,])(.*[\d])");
             //------------------------------------------------------------------------------------------1,3,4,6,7,9,10,12,13,15,16,18
-            
 
-            Regex regexClear = new Regex(@"clear board");
+            Regex regexClear = new Regex(@"clear");
+            Regex regexReset = new Regex(@"reset");
+
             Regex regexMT = new Regex(@"moveto (.*[\d])([,])(.*[\d])");
             
             Regex regexR = new Regex(@"rectangle (.*[\d])([,])(.*[\d])");
@@ -550,6 +551,8 @@ namespace Graphical_Programming_Language_Application
             Match match5 = regex5.Match(rtxt_console.Text.ToLower());
 
             Match matchClear = regexClear.Match(rtxt_console.Text.ToLower());
+            Match matchReset = regexClear.Match(rtxt_console.Text.ToLower());
+
             Match matchMT = regexMT.Match(rtxt_console.Text.ToLower());
 
             Match matchR = regexR.Match(rtxt_console.Text.ToLower());
@@ -801,7 +804,19 @@ namespace Graphical_Programming_Language_Application
                 this.drawareapanel.BackgroundImage = null;
             }
 
+
+            //================================================= RESET ==========================================================
+            else if (matchReset.Success)
+            {
+                _size1 = 0;
+                _size2 = 0;
+                lbl_StartPosX.Text = _size1.ToString();
+                lbl_StartPosY.Text = _size2.ToString();
+
+            }
+
             //================================================= MOVETO ==========================================================
+
             else if (matchMT.Success)
             {
                 try
